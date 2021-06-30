@@ -15,9 +15,18 @@ namespace DevSample_MVC.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult Contact()
         {
-            return View();
+            var model = new Contact();
+            return View(model);
+        }
+
+        [HttpPost]
+        public JsonResult Contact(Contact form)
+        {
+
+            return Json(Ok());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
