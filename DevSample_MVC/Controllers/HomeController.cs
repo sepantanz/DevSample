@@ -23,10 +23,16 @@ namespace DevSample_MVC.Controllers
         }
 
         [HttpPost]
-        public JsonResult Contact(Contact form)
+        public IActionResult Contact(Contact model)
         {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.error = "اطلاعات وارد شده صحیح نیست. لطفا دوباره تلاش کنید.";
+                return View(model);
+            }
 
-            return Json(Ok());
+            ViewBag.success = "پیغام شما با موفقیت ارسال شد. با تشکر.";
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
